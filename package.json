@@ -28,6 +28,7 @@
 	"homepage": "https://github.com/keiya01/react-simple-wheel-picker#readme",
 	"scripts": {
 		"build": "tsc",
+		"postinstall": "yarn build",
 		"prepublishOnly": "yarn build",
 		"test": "jest",
 		"storybook": "start-storybook -p 6006",

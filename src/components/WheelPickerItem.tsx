@@ -4,7 +4,7 @@ import React, {
   FocusEventHandler,
   MouseEventHandler
 } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { OPTION_ID } from "../constants/optionID";
 
 const Item = styled.li`
@@ -13,40 +13,20 @@ const Item = styled.li`
   align-items: center;
   justify-content: left;
   cursor: pointer;
-  ${(props: { height: number }): string => `
+  ${(props: { height: number; selected: boolean }): string => `
     min-height: ${props.height}px;
+    ${
+      props.selected
+        ? `
+    background: #EEEEF0;
+    border-radius: 6px;
+    `
+        : ""
+    }
   `}
   &:focus {
     outline: none;
   }
-`;
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
-const ICON_WIDTH = 20;
-const Icon = styled.span`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: ${ICON_WIDTH}px;
-  opacity: 0;
-  animation: ${fadeIn} 200ms ease-in;
-  animation-fill-mode: forwards;
-  animation-delay: 200ms;
-  ${(props: { fontSize: number }) => `
-    font-size: ${props.fontSize};
-  `}
 `;
 
 const Text = styled.p`
@@ -98,6 +78,7 @@ const WheelPickerItem: React.FC<WheelPickerItemProps> = (
   return (
     <Item
       role="option"
+      selected={selected}
       aria-selected={selected}
       aria-label={value.toString()}
       ref={ref}
@@ -109,8 +90,6 @@ const WheelPickerItem: React.FC<WheelPickerItemProps> = (
       onFocus={onFocus}
       tabIndex={0}
     >
-      {selected && <Icon fontSize={fontSize}>&#10003;</Icon>}
-      <span style={{ width: ICON_WIDTH }}></span>
       <Text style={textStyle}>{value}</Text>
     </Item>
   );
