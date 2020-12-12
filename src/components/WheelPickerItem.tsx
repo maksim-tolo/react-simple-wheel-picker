@@ -30,7 +30,7 @@ const Item = styled.li`
 `;
 
 const Text = styled.p`
-  margin: 0;
+  margin: auto;
   text-align: left;
   word-wrap: break-word;
   padding-left: 10px;

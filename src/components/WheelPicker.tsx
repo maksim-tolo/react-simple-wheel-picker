@@ -23,6 +23,11 @@ const List = styled.ul`
   overflow-x: hidden;
   text-align: center;
   padding: 0 20px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   ${(props: {
     height: number;
     width: string;
